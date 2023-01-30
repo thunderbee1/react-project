@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 const port = 3000
 
+app.use(express.json());
+
 connection.connect();
 
 app.get('/', (req, res) => {
@@ -13,17 +15,17 @@ app.get('/', (req, res) => {
 app.get('/users', (req, res) => {
     connection.query('SELECT * FROM users', function (error, results, fields) {
         if (error) throw error;
-        console.log(results[0]);
-        res.send(results[0])
+        console.log(results);
+        res.send(results)
     });
   })
 
 app.post('/signup', (req, res) => {
     let username = req.body.username
-    let email = req.body.email
-    let password = req.body.password
-    let queryString = `INSERT INTO users (username, email, password) VALUES (?,?,?)`;
-    let values = [username, email, password];
+    let id = req.body.id
+    let pw = req.body.pw
+    let queryString = `INSERT INTO users (username, id, pw) VALUES (?,?,?)`;
+    let values = [username, id, pw];
     connection.query(queryString, values, (err, result) => {
         if (err) {
             res.send(err)
