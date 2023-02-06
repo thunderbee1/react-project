@@ -2,9 +2,16 @@
 let connection = require('./database')
 const express = require('express');
 const app = express();
-const port = 3000
+const port = 3001
 
 app.use(express.json());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 connection.connect();
 
@@ -26,6 +33,7 @@ app.post('/signup', (req, res) => {
     let pw = req.body.pw
     let queryString = `INSERT INTO users (username, id, pw) VALUES (?,?,?)`;
     let values = [username, id, pw];
+    console.log(values)
     connection.query(queryString, values, (err, result) => {
         if (err) {
             res.send(err)
