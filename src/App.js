@@ -40,7 +40,7 @@ function App() {
         ID: <input value={id} onChange={handleIdChange} />
       </div>
       <div>
-        PW: <input value={pw} onChange={handlePwChange} />
+        PW: <input type="password" value={pw} onChange={handlePwChange} />
       </div>
       <div>
         Username: <input value={username} onChange={handleUsernameChange} />

@@ -1,6 +1,7 @@
 {
   "name": "my-react-app",
   "version": "0.1.0",
+  "homepage": "https://thunderbee1.github.io/react-project",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
